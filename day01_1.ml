@@ -1,6 +1,6 @@
 (*
-$ ocamlopt -o main day01_1.ml
-$ ./main < sample.txt
+ocamlopt -o main day01_1.ml
+./main < sample.txt
 *)
 
 let main () =
