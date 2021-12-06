@@ -9,9 +9,9 @@ let read_input () =
   with
     End_of_file -> (close_in ic; !acc)
 
-let main () =
-  let input = read_input () in
-  let (horiz, depth) = List.fold_right
+(* calc_position : string list -> int * int *)
+let calc_position input =
+  List.fold_right
     (fun command (h, d) ->
       match String.split_on_char ' ' command with
           op :: x_str :: [] ->
@@ -22,7 +22,11 @@ let main () =
             else assert false
         | _ -> assert false)
     input
-    (0, 0) in
+    (0, 0)
+
+let main () =
+  let input = read_input () in
+  let (horiz, depth) = calc_position input in
   (print_int (horiz * depth); print_newline())
 
 let _ = main ()
