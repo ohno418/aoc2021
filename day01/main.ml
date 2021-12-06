@@ -7,7 +7,8 @@ let read_input () =
     (while true do
        acc := int_of_string (input_line ic) :: !acc
      done; !acc)
-  with End_of_file -> !acc
+  with
+    End_of_file -> (close_in ic; !acc)
 
 (* part1 : int list -> int *)
 let part1 input_list =
