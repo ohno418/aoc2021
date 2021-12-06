@@ -13,12 +13,9 @@ let print_part1 input =
   let (horiz, depth) = List.fold_right
     (fun command (h, d) ->
       match String.split_on_char ' ' command with
-          op :: x_str :: [] ->
-            let x = int_of_string x_str in
-            if op = "forward" then (h + x, d)
-            else if op = "down" then (h, d + x)
-            else if op = "up" then (h, d - x)
-            else assert false
+          "forward" :: [x] -> (h + (int_of_string x), d)
+        | "down" :: [x] -> (h, d + (int_of_string x))
+        | "up" :: [x] -> (h, d - (int_of_string x))
         | _ -> assert false)
     input
     (0, 0) in
@@ -28,12 +25,9 @@ let print_part2 input =
   let (horiz, depth, _) = List.fold_right
     (fun command (h, d, a) ->
       match String.split_on_char ' ' command with
-          op :: x_str :: [] ->
-            let x = int_of_string x_str in
-            if op = "forward" then (h + x, d + a * x, a)
-            else if op = "down" then (h, d, a + x)
-            else if op = "up" then (h, d, a - x)
-            else assert false
+          "forward" :: [x] -> (h + (int_of_string x), d + a * (int_of_string x), a)
+        | "down" :: [x] -> (h, d, a + (int_of_string x))
+        | "up" :: [x] -> (h, d, a - (int_of_string x))
         | _ -> assert false)
     input
     (* (horizontal, depth, aim) *)
