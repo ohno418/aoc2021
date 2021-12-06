@@ -1,3 +1,2 @@
-*.cmi
-*.cmx
-*.o
+_build/
+input/
