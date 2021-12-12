@@ -1,13 +1,4 @@
-(* read_input : unit -> stirng list *)
-let read_input () =
-  let ic = open_in "./input/day02.txt" in
-  let acc = ref [] in
-  try
-    (while true do
-       acc := (input_line ic) :: !acc
-    done; !acc)
-  with
-    End_of_file -> (close_in ic; !acc)
+#use "utils/read_input.ml"
 
 let print_part1 input =
   let (horiz, depth) = List.fold_right
@@ -35,7 +26,7 @@ let print_part2 input =
   (print_string "part2: "; print_int (horiz * depth); print_newline())
 
 let main () =
-  let input = read_input () in
+  let input = read_input "day02.txt" in
   (print_part1 input;
    print_part2 input)
 
